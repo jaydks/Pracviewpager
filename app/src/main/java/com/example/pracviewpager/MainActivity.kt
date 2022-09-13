@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         /**현재 배너 위치 표시하기*/
         //private으로 위에서 전역변수로 총 페이지 수 선언함
         binding.tvTotal.text = numBanner.toString()
+
+        //현재 위치를 지정
         binding.vpAdv.setCurrentItem(currentPosition, false)
 
         //현재 몇번재 배너잉ㄴ지 보여주는 숫자를 변경함
