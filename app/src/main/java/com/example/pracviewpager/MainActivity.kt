@@ -2,6 +2,7 @@ package com.example.pracviewpager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pracviewpager.databinding.ActivityMainBinding
@@ -9,6 +10,7 @@ import com.example.pracviewpager.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val numBanner = 3 //배너 총 수
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         /** view pager */
+
+        /**여백주기*/
         // 여백, 너비에 대한 정의
         val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin) // 여백
         val pagerWidth = resources.getDimensionPixelOffset(R.dimen.pageMargin) // 페이저 너비
@@ -34,9 +38,16 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        binding.vpAdv.offscreenPageLimit = 1 // 몇 개의 페이지를 미리 로드 해둘지
+        binding.vpAdv.offscreenPageLimit = 1 // 몇 개의 페이지를 미리 로드 해둘지, 설정안하면 갑자기 튀어나오는 것처럼 보임
+
+
+        /**어댑터 생성*/
         binding.vpAdv.orientation = ViewPager2.ORIENTATION_HORIZONTAL // 방향
         binding.vpAdv.adapter = AdvViewPagerAdapter(advList)  // 어댑터 생성
+
+
+        /**인디케이터 뷰페이저와 결합*/
+        binding.indicator.setViewPager2(binding.vpAdv) // 인디케이터 설정
 
     }
 

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.11091127098321343" />
+        <entry key="app/src/main/res/drawable/gray_ellipese.xml" value="0.188" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32570953369140615" />
         <entry key="app/src/main/res/layout/item_adv.xml" value="0.28125" />
       </map>

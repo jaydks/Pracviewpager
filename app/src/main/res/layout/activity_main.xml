@@ -7,18 +7,34 @@
     tools:context=".MainActivity">
 
     <androidx.viewpager2.widget.ViewPager2
-        tools:listitem="@layout/item_adv"
         android:id="@+id/vp_adv"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/margin_30"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:clipToPadding="false"
         android:clipChildren="false"
-        />
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_adv" />
+
+
+
+    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:dampingRatio="0.5"
+        app:dotsCornerRadius="@dimen/margin_20"
+        app:dotsSize="15dp"
+        app:dotsSpacing="@dimen/margin_5"
+        app:dotsStrokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vp_adv"
+        app:stiffness="300" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

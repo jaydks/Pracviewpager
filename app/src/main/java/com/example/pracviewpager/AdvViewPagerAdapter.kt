@@ -22,10 +22,10 @@ class AdvViewPagerAdapter(val advList : ArrayList<Advs>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.bind(advList[position])
+        holder.bind(advList[position]) // 설정한 데이터의 수로 나눈다
     }
 
-    override fun getItemCount(): Int = advList.size
+    override fun getItemCount(): Int = advList.size // 아이템 갯수를 임의로 억 자리 숫자로 늘린다
 
 
 }
