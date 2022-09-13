@@ -78,5 +78,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // 다른 페이지 갔다가 돌아오면 다시 스크롤 시작
+    override fun onResume() {
+        super.onResume()
+        autoScrollStart(intervalTime)
+    }
+
+    // 다른 페이지로 떠나있는 동안 스크롤이 동작할 필요는 없음. 정지
+    override fun onPause() {
+        super.onPause()
+        autoScrollStop()
+    }
 
 }
