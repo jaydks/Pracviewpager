@@ -25,30 +25,33 @@ class MainActivity : AppCompatActivity() {
 
         /** view pager */
 
-        /**여백주기*/
-        // 여백, 너비에 대한 정의
-        val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin) // 여백
-        val pagerWidth = resources.getDimensionPixelOffset(R.dimen.pageMargin) // 페이저 너비
-        val screenWidth = resources.displayMetrics.widthPixels // 스마트폰의 너비 가져옴
-        val offsetPx = screenWidth - pagerWidth - pageMarginPx
-
-        //setPageTransformer이용해 page의 X축 값에 변화 줌
-        binding.vpAdv.setPageTransformer { page, position ->
-            page.translationX = position * -offsetPx
-
-        }
-
-        binding.vpAdv.offscreenPageLimit = 1 // 몇 개의 페이지를 미리 로드 해둘지, 설정안하면 갑자기 튀어나오는 것처럼 보임
-
-
         /**어댑터 생성*/
         binding.vpAdv.orientation = ViewPager2.ORIENTATION_HORIZONTAL // 방향
         binding.vpAdv.adapter = AdvViewPagerAdapter(advList)  // 어댑터 생성
 
 
-        /**인디케이터 뷰페이저와 결합*/
+        /**인디케이터*/
+        //인디케이터 뷰페이저와 결합
         binding.indicator.setViewPager2(binding.vpAdv) // 인디케이터 설정
 
+        /**현재 배너 위치 표시하기*/
+        //private으로 위에서 전역변수로 총 페이지 수 선언함
+        binding.tvTotal.text = numBanner.toString()
+
+        //현재 몇번재 배너잉ㄴ지 보여주는 숫자를 변경함
+        binding.vpAdv.apply {
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    binding.tvCurrent.text = "${position+1}" //position +1 (position이 0부터 시작하므로)
+                }
+            })
+        }
+
+        //모두 보기 클릭시 기능 -> 원하는 걸로 구현하면 됨
+        binding.checkpages.setOnClickListener {
+            Toast.makeText(this, "모두 보기 클릭함", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
