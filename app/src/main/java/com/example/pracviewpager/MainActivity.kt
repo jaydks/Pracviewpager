@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val numBanner = 3 //배너 총 수
+    private val currentPosition = Int.MAX_VALUE / 2 // 왼쪽으로도 무한 스크롤, 오른쪽으로도 무한 스크롤 할 수 있도록 현재 위치를 딱 중간으로 설정한다.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,20 +31,17 @@ class MainActivity : AppCompatActivity() {
         binding.vpAdv.adapter = AdvViewPagerAdapter(advList)  // 어댑터 생성
 
 
-        /**인디케이터*/
-        //인디케이터 뷰페이저와 결합
-        binding.indicator.setViewPager2(binding.vpAdv) // 인디케이터 설정
-
         /**현재 배너 위치 표시하기*/
         //private으로 위에서 전역변수로 총 페이지 수 선언함
         binding.tvTotal.text = numBanner.toString()
+        binding.vpAdv.setCurrentItem(currentPosition, false)
 
         //현재 몇번재 배너잉ㄴ지 보여주는 숫자를 변경함
         binding.vpAdv.apply {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    binding.tvCurrent.text = "${position+1}" //position +1 (position이 0부터 시작하므로)
+                    binding.tvCurrent.text = "${position%3+1}" // 여기도 %3
                 }
             })
         }
